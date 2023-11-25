@@ -1,13 +1,7 @@
-import {
-  AppRegistry,
-  Dimensions,
-  ScrollView,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
+import { Dimensions, ScrollView, StyleSheet, Text, View } from 'react-native';
 import React, { useState } from 'react';
 import { OnBoardingData } from '@/constants/onBoardingData';
+import styled from 'styled-components/native';
 
 const Board = () => {
   const [currentPage, setCurrentPage] = useState(0);
@@ -97,6 +91,7 @@ const styles = StyleSheet.create({
   activeDot: {
     backgroundColor: '#4876EF',
   },
+  login: {},
 });
 
 export default Board;
