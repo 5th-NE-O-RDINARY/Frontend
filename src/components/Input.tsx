@@ -1,7 +1,7 @@
 import EyeClosed from '@/assets/icon/EyeClosed';
 import EyeOpend from '@/assets/icon/EyeOpend';
 import React, { useState } from 'react';
-import { TextInputProps, TouchableOpacity } from 'react-native';
+import { TextInputProps, TouchableOpacity, View } from 'react-native';
 import styled from 'styled-components/native';
 
 interface StyledInputProps extends TextInputProps {
@@ -9,6 +9,8 @@ interface StyledInputProps extends TextInputProps {
   label?: string;
   placeholder?: string;
   onChangeText?: (text: string) => void;
+  button?: React.ReactNode;
+  onClick?: () => void;
 }
 
 const Input = ({
@@ -16,6 +18,8 @@ const Input = ({
   label,
   placeholder,
   onChangeText,
+  button,
+  onClick,
 }: StyledInputProps) => {
   const [inputValue, setInputValue] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -39,7 +43,9 @@ const Input = ({
           onChangeText={handleInputChange}
           value={inputValue}
         />
-
+        {button ? (
+          <TouchableOpacity onPress={onClick}>{button}</TouchableOpacity>
+        ) : null}
         {isPassword && (
           <PasswordToggle onPress={togglePasswordVisibility}>
             {showPassword ? <EyeOpend /> : <EyeClosed />}

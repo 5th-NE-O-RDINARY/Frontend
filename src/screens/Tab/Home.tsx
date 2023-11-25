@@ -1,7 +1,7 @@
 import Input from '@/components/Input';
 import React, { useState } from 'react';
 import { styled } from 'styled-components';
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 
 const Home = () => {
   const [value, setValue] = useState<string>('');
@@ -16,6 +16,10 @@ const Home = () => {
         onChangeText={(text) => {
           setValue(text);
         }}
+        button={<Btn />}
+        onClick={() => {
+          console.log('click btn');
+        }}
       />
       <Input
         label="비밀번호"
@@ -28,7 +32,22 @@ const Home = () => {
     </Container>
   );
 };
+const Btn = () => {
+  return (
+    <CheckButton>
+      <Text>확인</Text>
+    </CheckButton>
+  );
+};
 
+const CheckButton = styled.View`
+  width: 49px;
+  height: 20px;
+  background-color: #0075ff;
+  border-radius: 15px;
+  justify-content: center;
+  align-items: center;
+`;
 export default Home;
 
 const Container = styled.View`
