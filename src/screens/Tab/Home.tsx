@@ -31,7 +31,7 @@ const Home = ({ navigation }) => {
         }}
       />
       {/* <TouchableOpacity onPress={() => navigation.navigate('MY')}> */}
-      <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
+      <TouchableOpacity onPress={() => navigation.navigate('Login')}>
         <Text>로그인하기</Text>
       </TouchableOpacity>
     </Container>
