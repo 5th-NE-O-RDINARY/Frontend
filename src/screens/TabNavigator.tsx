@@ -9,6 +9,8 @@ import HomeIcon from '@/assets/icon/HomeIcon';
 import PromiseIcon from '@/assets/icon/PromiseIcon';
 import PromiseHistoryIcon from '@/assets/icon/PromiseHistory';
 import MypageIcon from '@/assets/icon/MypageIcon';
+import Deposit from './MyPage/Deposit';
+import PromiseDetail from './PromiseDetail';
 
 const Tab = createBottomTabNavigator();
 
@@ -41,7 +43,7 @@ const TabNavigator = () => {
     >
       <Tab.Screen
         name="홈"
-        component={Home}
+        component={Deposit}
         options={{
           headerShown: false,
           tabBarIcon: ({ color }) => <HomeIcon color={color} />,

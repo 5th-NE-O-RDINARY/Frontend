@@ -3,15 +3,19 @@ import { styled } from "styled-components"
 
 const PromiseHeader = ({promiseTitle}: {promiseTitle: string}) => {
     return (
-        <View>
+        <StyledView>
           <StyledTitle>제목</StyledTitle>
           <StyledPromiseTitle>{promiseTitle}</StyledPromiseTitle>
           <StyledDescription>지각자 체크 버튼은 1시간 전부터 자동으로 활성화 돼요!</StyledDescription>
-        </View>
+        </StyledView>
       )
 }
 
 export default PromiseHeader
+
+const StyledView = styled(View)`
+  padding-top: 25px;
+`
 
 const StyledTitle = styled(Text)`
   margin-top: 25px;
