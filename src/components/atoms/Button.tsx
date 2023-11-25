@@ -1,39 +1,43 @@
 import styled from 'styled-components/native';
 import React, { ReactNode } from 'react';
-import { TouchableOpacity, TouchableOpacityProps } from 'react-native';
+import { TouchableOpacity, TouchableOpacityProps, Text } from 'react-native';
+
+type VariantType = 'default' | 'small'
 
 interface ButtonProps extends TouchableOpacityProps {
+  variant?: VariantType
   children: ReactNode;
   disabled?: boolean;
   onClick?: () => void;
 }
 
 export const Button = ({
+  variant = 'default',
   children,
-  disabled,
+  disabled = false,
   onClick,
-  ...props
 }: ButtonProps) => {
   return (
-    <ButtonWrapper disabled={disabled} onPress={onClick}>
+    <ButtonWrapper variant={variant} disabled={disabled} onPress={onClick}>
       <ButtonText>{children}</ButtonText>
     </ButtonWrapper>
   );
 };
 
 const ButtonWrapper = styled(TouchableOpacity)`
-  width: 311px;
-  height: 52px;
-  border-radius: 15px;
+  width: ${({ variant }: { variant: VariantType }) => variant === 'small' ? '140px' : '311px'};
+  height: ${({ variant }: { variant: VariantType }) => variant === 'small' ? '40px' : '52px'};
+  border-radius: ${({ variant }: { variant: VariantType }) => variant === 'small' ? '12px' : '15px'};
   justify-content: center;
   align-items: center;
-  background-color: ${({ disabled }: { disabled?: boolean }) =>
-    disabled ? '#CACACA' : '#0075ff'};
+  background-color: ${({ variant, disabled }: { variant: VariantType, disabled?: boolean }) =>
+    disabled ? variant === 'small' ? '#F1F1F1' : '#CACACA' : '#0075ff'};
 `;
 
-const ButtonText = styled.Text`
-  color: #fff;
-  font-size: 16px;
-  font-weight: 500;
-  letter-spacing: -0.32px;
+const ButtonText = styled(Text)`
+  color: ${({ variant, disabled }: { variant: VariantType, disabled?: boolean }) =>
+    variant === 'small' && disabled ? "#5C5B7C" : "#fff"};
+  font-size: ${({ variant }: { variant: VariantType }) => variant === 'small' ? '12px' : '16px'};
+  font-weight: ${({ variant }: { variant: VariantType }) => variant === 'small' ? '400' : '500'};
+  letter-spacing: ${({ variant }: { variant: VariantType }) => variant === 'small' ? '-0.24px' : '-0.32px'};
 `;
