@@ -11,9 +11,12 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.anonymous.money"
     },
     "android": {
       "adaptiveIcon": {
@@ -22,14 +25,20 @@
       },
       "package": "com.anonymous.money",
       "config": {
-        "googleMaps": { "apiKey": "AIzaSyApOQfp96DxWeSrTpPiUm9G9UzfoezB93c" }
+        "googleMaps": {
+          "apiKey": "AIzaSyApOQfp96DxWeSrTpPiUm9G9UzfoezB93c"
+        }
       }
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
     "packagerOpts": {
-      "sourceExts": ["ts", "tsx", "js"],
+      "sourceExts": [
+        "ts",
+        "tsx",
+        "js"
+      ],
       "transformer": "node_modules/react-native-typescript-transformer/index.js"
     },
     "extra": {
