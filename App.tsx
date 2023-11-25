@@ -13,6 +13,7 @@ import Login from '@/screens/Login';
 import Deposit from '@/screens/MyPage/Deposit';
 import PromiseDetail from '@/screens/PromiseDetail';
 import MakePromise from '@/screens/MakePromise';
+import Home from '@/screens/Tab/Home';
 
 const Stack = createStackNavigator();
 
@@ -75,7 +76,6 @@ export default function App() {
                 title: '약속 내용',
               }}
             />
-            <Stack.Screen name="Home" component={MakePromise} />
           </Stack.Navigator>
         </NavigationContainer>
       </RecoilRoot>

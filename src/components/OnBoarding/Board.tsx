@@ -19,8 +19,6 @@ const Board = () => {
     setCurrentPage(currentIndex);
   };
 
-  const imageUrl = require('@/assets/onBoarding1.png');
-
   return (
     <Wrapper>
       <ScrollView
