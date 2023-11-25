@@ -1,5 +1,5 @@
-import {palette} from './palette';
-import {typo} from './typo';
+import { palette } from "./palette";
+import { typo } from "./typo";
 
 export interface TypeOfTheme {
   typo: TypeOfTypo;
