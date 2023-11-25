@@ -8,6 +8,8 @@ import TabNavigator from '@/screens/TabNavigator';
 import OnBoarding from '@/screens/OnBoarding/OnBoarding';
 import SignUp from '@/screens/SignUp';
 import Login from '@/screens/Login';
+import Deposit from '@/screens/MyPage/Deposit';
+import PromiseDetail from '@/screens/PromiseDetail';
 
 const Stack = createStackNavigator();
 
@@ -53,6 +55,20 @@ export default function App() {
               component={Login}
               options={{
                 title: '로그인',
+              }}
+            />
+            <Stack.Screen
+              name="Deposit"
+              component={Deposit}
+              options={{
+                title: '예치금',
+              }}
+            />
+            <Stack.Screen
+              name="Deposit"
+              component={PromiseDetail}
+              options={{
+                title: '약속 내용',
               }}
             />
           </Stack.Navigator>

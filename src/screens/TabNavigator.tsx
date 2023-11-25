@@ -43,7 +43,7 @@ const TabNavigator = () => {
     >
       <Tab.Screen
         name="홈"
-        component={Deposit}
+        component={Home}
         options={{
           headerShown: false,
           tabBarIcon: ({ color }) => <HomeIcon color={color} />,
