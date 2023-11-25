@@ -16,6 +16,7 @@ import Calendar from '@/assets/icon/calendar';
 import Clock from '@/assets/icon/clock';
 import GoogleMap from '@/components/atoms/GoogleMap';
 import MapView from 'react-native-maps';
+import XIcon from '@/assets/icon/XButton';
 
 interface StyledInputProps extends TextInputProps {
   isPassword?: boolean;
@@ -133,7 +134,7 @@ const MakePromise = ({ navigation }) => {
             </StyledInputContainer>
 
             {/*3. 약속 장소*/}
-            <Label>인증 방법</Label>
+            <Label>약속 장소</Label>
             <LabelWrapper onPress={() => setMap(true)}>
               {lat === 37 && long === 126 ? (
                 <Text>장소를 정해주세요</Text>
@@ -149,7 +150,7 @@ const MakePromise = ({ navigation }) => {
               <View style={styles.flex}>
                 <Button
                   variant="small"
-                  disabled={pass === 'leader'}
+                  color={pass == 'leader' ? '#0075FF' : '#cacaca'}
                   onClick={() => {
                     setPass('leader');
                   }}
@@ -159,7 +160,7 @@ const MakePromise = ({ navigation }) => {
 
                 <Button
                   variant="small"
-                  disabled={pass === 'location'}
+                  color={pass == 'location' ? '#0075FF' : '#cacaca'}
                   onClick={() => {
                     setPass('location');
                   }}
@@ -180,7 +181,7 @@ const MakePromise = ({ navigation }) => {
               <View style={styles.flex}>
                 <Button
                   variant="small"
-                  disabled={cost === 'either'}
+                  color={cost == 'either' ? '#0075FF' : '#cacaca'}
                   onClick={() => {
                     setCost('either');
                   }}
@@ -190,7 +191,7 @@ const MakePromise = ({ navigation }) => {
 
                 <Button
                   variant="small"
-                  disabled={cost === 'common'}
+                  color={cost == 'common' ? '#0075FF' : '#cacaca'}
                   onClick={() => {
                     setCost('common');
                   }}
@@ -225,19 +226,27 @@ const MakePromise = ({ navigation }) => {
               //</Picker>*/}
               //    </View>
               <View style={styles.flexWrapper}>
-                <StyledTextField
-                  placeholder="￦ 최대 지각비를 입력해주세요"
-                  onChangeText={(value: string) => {
-                    setCostNumber(Number(value));
-                  }}
-                />
-                <StyledLabelWrapper
-                  onPress={() => {
-                    setPerTimeVisible(true);
+                <View
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    alignItems: 'center',
                   }}
                 >
-                  <Text>{perTime}</Text>
-                </StyledLabelWrapper>
+                  <StyledTextField
+                    placeholder="￦ 최대 지각비를 입력해주세요"
+                    onChangeText={(value: string) => {
+                      setCostNumber(Number(value));
+                    }}
+                  />
+                  <StyledLabelWrapper
+                    onPress={() => {
+                      setPerTimeVisible(true);
+                    }}
+                  >
+                    <Text>{perTime}</Text>
+                  </StyledLabelWrapper>
+                </View>
                 {perTimeVisible && (
                   <AlertModalWrapper>
                     <StyledButton
@@ -245,7 +254,9 @@ const MakePromise = ({ navigation }) => {
                         setPerTimeVisible(false);
                       }}
                     >
-                      <Text>X</Text>
+                      <Text>
+                        <XIcon />
+                      </Text>
                     </StyledButton>
                     <StyledModalText>주기 설정</StyledModalText>
                     <View style={styles.center}>
@@ -290,9 +301,7 @@ const MakePromise = ({ navigation }) => {
               //   costNumber.length === 0
               // }
               onClick={() => {
-                //약속 생성하기!
-                //console.log(title, date, time, cost, pass, costNumber);
-                navigation.navigator('PromiseDetail');
+                navigation.navigate('PromiseDetail');
               }}
             >
               <Text>약속 등록하기</Text>
@@ -334,6 +343,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignContent: 'center',
     width: '100%',
+    gap: 10,
+    padding: 10,
   },
   flexWrapper: {
     display: 'flex',
@@ -350,7 +361,8 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   container: {
-    paddingTop: 0,
+    paddingTop: 10,
+    paddingBottom: 40,
     flex: 1,
     width: '100%',
     height: '100%',
@@ -439,7 +451,6 @@ const StyledLabelWrapper = styled.TouchableOpacity`
   text-align: center;
   background-color: #f1f1f1;
   border-radius: 15px;
-  margin-top: 28px;
   display: flex;
   justify-content: center;
   padding: 10px;
@@ -452,12 +463,13 @@ const StyledTextField = styled.TextInput<StyledInputProps>`
   height: 50px;
   font-size: 12px;
   font-weight: 400;
-  margin-top: 30px;
   padding-left: 14px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  margin-right: 50px;
 `;
 const AlertModalWrapper = styled(View)`
   position: absolute;
-  width: 251px;
   height: 188px;
   background-color: #ffffff;
   border-radius: 15px;

@@ -5,7 +5,7 @@ import { Button } from '@/components/atoms/Button';
 
 const OnBoarding = ({ navigation }) => {
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{ backgroundColor: '#fff' }}>
       <Board />
       <ButtonWrapper>
         <Button
