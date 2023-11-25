@@ -31,7 +31,13 @@ export default function App() {
             }}
             initialRouteName={'TabNavigator'}
           >
-            <Stack.Screen name="TabNavigator" component={TabNavigator} />
+            <Stack.Screen
+              name="TabNavigator"
+              component={TabNavigator}
+              options={{
+                headerShown: false,
+              }}
+            />
             <Stack.Screen name="Test" component={Test} />
             <Stack.Screen
               name="SignUp"

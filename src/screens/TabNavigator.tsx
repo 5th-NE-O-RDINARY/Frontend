@@ -16,6 +16,7 @@ const TabNavigator = () => {
   return (
     <Tab.Navigator
       screenOptions={{
+        headerShown: false,
         tabBarStyle: {
           height: Platform.OS === 'android' ? 60 : 94,
           shadowColor: '#000000',
