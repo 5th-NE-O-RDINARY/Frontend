@@ -30,7 +30,7 @@ export default function App() {
                 fontSize: 20,
               },
             }}
-            initialRouteName={'TabNavigator'}
+            initialRouteName={'Home'}
           >
             <Stack.Screen
               name="TabNavigator"
@@ -40,7 +40,6 @@ export default function App() {
               }}
             />
             <Stack.Screen name="Test" component={Test} />
-            <Stack.Screen name="TabNavigator" component={TabNavigator} />
             <Stack.Screen name="OnBoarding" component={OnBoarding} />
             <Stack.Screen
               name="SignUp"
