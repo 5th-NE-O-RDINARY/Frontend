@@ -1,9 +1,12 @@
-import { View, Text } from 'react-native';
+import { View, Text, SafeAreaView } from 'react-native';
+import Terms from '../Terms/Terms';
 const Mypage = () => {
   return (
-    <View>
-      <Text>Mypage</Text>
-    </View>
+    <SafeAreaView>
+      <View>
+        <Terms />
+      </View>
+    </SafeAreaView>
   );
 };
 

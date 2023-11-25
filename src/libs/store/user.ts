@@ -1,8 +1,8 @@
-import { atom } from "recoil";
+import { atom } from 'recoil';
 
 const initialState = {};
 
 export const userState = atom({
-  key: "userState",
+  key: 'userState',
   default: initialState,
 });
