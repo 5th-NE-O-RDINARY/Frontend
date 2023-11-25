@@ -59,7 +59,7 @@ const Input = ({
 export default Input;
 
 const InputContainer = styled.View`
-  width: 100%;
+  width: 311px;
   margin-bottom: 16px;
 `;
 
