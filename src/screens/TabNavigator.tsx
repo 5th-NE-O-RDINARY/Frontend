@@ -67,6 +67,7 @@ const TabNavigator = () => {
         name="MY"
         component={Mypage}
         options={{
+          headerTitle: '마이페이지',
           headerTitleAlign: 'center',
           tabBarIcon: ({ color }) => <MypageIcon color={color} />,
         }}
