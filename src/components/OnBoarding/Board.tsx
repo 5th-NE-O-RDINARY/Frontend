@@ -13,7 +13,7 @@ const Board = () => {
   };
 
   return (
-    <>
+    <Wrapper>
       <ScrollView
         horizontal
         pagingEnabled
@@ -21,77 +21,76 @@ const Board = () => {
         showsHorizontalScrollIndicator={false}
       >
         {OnBoardingData.map((item, index) => (
-          <View key={index} style={styles.container}>
-            <View style={styles.img}></View>
-            <Text style={styles.title}>{item.title}</Text>
-            <View style={styles.contentWrapper}>
-              <Text style={styles.content}>{item.content1}</Text>
-              <Text style={styles.content}>{item.content2}</Text>
-            </View>
-          </View>
+          <Container key={index}>
+            <Img></Img>
+            <Title>{item.title}</Title>
+            <ContentWrapper>
+              <Content>{item.content1}</Content>
+              <Content>{item.content2}</Content>
+            </ContentWrapper>
+          </Container>
         ))}
       </ScrollView>
-      <View style={styles.pagination}>
+      <Pagination>
         {OnBoardingData.map((_, index) => (
-          <View
-            key={index}
-            style={[
-              styles.paginationDot,
-              index === currentPage && styles.activeDot,
-            ]}
-          />
+          <PaginationDot key={index} active={index === currentPage} />
         ))}
-      </View>
-    </>
+      </Pagination>
+    </Wrapper>
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    width: Dimensions.get('window').width,
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 20,
-  },
-  img: {
-    width: 311,
-    height: 264,
-    backgroundColor: 'gray',
-    marginBottom: 61,
-  },
-  title: {
-    color: '#4876EF',
-    fontSize: 16,
-    fontWeight: '800',
-    textAlign: 'center',
-    marginBottom: 21,
-  },
-  content: {
-    fontSize: 11,
-    textAlign: 'center',
-  },
-  contentWrapper: {
-    marginBottom: 37,
-  },
-  pagination: {
-    flexDirection: 'row',
-    position: 'absolute',
-    bottom: 16,
-    width: '100%',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  paginationDot: {
-    width: 4,
-    height: 4,
-    borderRadius: 5,
-    backgroundColor: '#D9D9D9',
-    marginHorizontal: 3,
-  },
-  activeDot: {
-    backgroundColor: '#4876EF',
-  },
-  login: {},
-});
+const Wrapper = styled.View`
+  position: relative;
+`;
+
+const Container = styled.View`
+  width: ${Dimensions.get('window').width}px;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+`;
+
+const Img = styled.View`
+  width: 311px;
+  height: 264px;
+  margin-bottom: 45px;
+  background-color: lightgray;
+`;
+
+const Title = styled.Text`
+  color: #4876ef;
+  font-size: 16px;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 21px;
+`;
+
+const Content = styled.Text`
+  font-size: 11px;
+  text-align: center;
+`;
+
+const ContentWrapper = styled.View`
+  margin-bottom: 37px;
+`;
+
+const Pagination = styled.View`
+  flex-direction: row;
+  position: absolute;
+  bottom: 28px;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+`;
+
+const PaginationDot = styled.View`
+  width: 4px;
+  height: 4px;
+  border-radius: 5px;
+  background-color: ${({ active }: { active: boolean }) =>
+    active ? '#4876ef' : '#D9D9D9'};
+`;
 
 export default Board;

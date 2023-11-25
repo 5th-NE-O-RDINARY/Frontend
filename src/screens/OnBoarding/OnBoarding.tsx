@@ -6,9 +6,7 @@ import styled from 'styled-components/native';
 const OnBoarding = () => {
   return (
     <SafeAreaView>
-      <View style={styles.container}>
-        <Board />
-      </View>
+      <Board />
       <KaKao>
         {/* <KakaoIcon /> */}
         <KakaoText>카카오로 로그인하기</KakaoText>
@@ -43,7 +41,3 @@ const LoginText = styled.Text`
 `;
 
 export default OnBoarding;
-
-const styles = StyleSheet.create({
-  container: {},
-});
