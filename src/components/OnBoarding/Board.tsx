@@ -1,4 +1,11 @@
-import { Dimensions, ScrollView, StyleSheet, Text, View } from 'react-native';
+import {
+  Dimensions,
+  Image,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import React, { useState } from 'react';
 import { OnBoardingData } from '@/constants/onBoardingData';
 import styled from 'styled-components/native';
@@ -12,6 +19,8 @@ const Board = () => {
     setCurrentPage(currentIndex);
   };
 
+  const imageUrl = require('@/assets/onBoarding1.png');
+
   return (
     <Wrapper>
       <ScrollView
@@ -22,7 +31,9 @@ const Board = () => {
       >
         {OnBoardingData.map((item, index) => (
           <Container key={index}>
-            <Img></Img>
+            <Img>
+              <Image source={item.imgUrl} />
+            </Img>
             <Title>{item.title}</Title>
             <ContentWrapper>
               <Content>{item.content1}</Content>
@@ -52,9 +63,9 @@ const Container = styled.View`
 `;
 
 const Img = styled.View`
-  width: 311px;
-  height: 264px;
-  margin-bottom: 45px;
+  width: 300px;
+  height: 300px;
+  margin-bottom: 30px;
   background-color: lightgray;
 `;
 

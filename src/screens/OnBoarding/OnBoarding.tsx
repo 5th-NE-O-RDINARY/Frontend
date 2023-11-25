@@ -1,5 +1,4 @@
 import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
-import React from 'react';
 import Board from '@/components/OnBoarding/Board';
 import styled from 'styled-components/native';
 
@@ -35,6 +34,7 @@ const KakaoText = styled.Text`
 `;
 
 const LoginText = styled.Text`
+  color: #0075ff;
   text-decoration: underline;
   text-align: center;
   margin: 32px 0;
