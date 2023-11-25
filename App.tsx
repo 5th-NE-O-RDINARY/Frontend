@@ -1,5 +1,3 @@
-// App.tsx
-
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { StyleSheet } from 'react-native';
 
@@ -8,9 +6,9 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import Test from '@/screens/Test';
 import TabNavigator from '@/screens/TabNavigator';
+import OnBoarding from '@/screens/OnBoarding/OnBoarding';
 
 import SignUp from '@/screens/SignUp';
-import Home from '@/screens/Tab/Home';
 import Login from '@/screens/Login';
 import MakePromise from '@/screens/MakePromise';
 
@@ -39,8 +37,15 @@ export default function App() {
             }}
             initialRouteName={'Home'}
           >
+            <Stack.Screen
+              name="TabNavigator"
+              component={TabNavigator}
+              options={{
+                headerShown: false,
+              }}
+            />
             <Stack.Screen name="Test" component={Test} />
-            {/* <Stack.Screen name="TabNavigator" component={TabNavigator} /> */}
+            <Stack.Screen name="OnBoarding" component={OnBoarding} />
             <Stack.Screen
               name="SignUp"
               component={SignUp}
@@ -48,7 +53,6 @@ export default function App() {
                 title: '회원 가입',
               }}
             />
-
             <Stack.Screen
               name="Login"
               component={Login}

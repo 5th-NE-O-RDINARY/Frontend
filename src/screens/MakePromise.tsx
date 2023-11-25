@@ -67,6 +67,7 @@ const MakePromise = () => {
     console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
     setLat(latitude);
     setLong(longitude);
+
     getAddressFromCoordinates(latitude, longitude);
     console.log(address);
   };
@@ -202,7 +203,7 @@ const MakePromise = () => {
         )}
           <Button
             disabled={
-              title.length === 0 || location.length === 0 || costNumber === '0' || time.length === 0 || date.length === 0
+              title.length === 0 || (lat === 37 && long === 126) || date.length === 0 || time.length === 0 || costNumber.length === 0
             }
             onClick={() => {
               //약속 생성하기!
