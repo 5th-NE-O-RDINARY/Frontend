@@ -1,7 +1,6 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Home from './Tab/Home';
-import Promises from './Tab/Promises';
 import PromiseHistory from './Tab/PromiseHistory';
 import Mypage from './Tab/Mypage';
 import { Platform } from 'react-native';
@@ -9,6 +8,7 @@ import HomeIcon from '@/assets/icon/HomeIcon';
 import PromiseIcon from '@/assets/icon/PromiseIcon';
 import PromiseHistoryIcon from '@/assets/icon/PromiseHistory';
 import MypageIcon from '@/assets/icon/MypageIcon';
+import MakePromise from '@/screens/MakePromise';
 
 const Tab = createBottomTabNavigator();
 
@@ -49,7 +49,7 @@ const TabNavigator = () => {
       />
       <Tab.Screen
         name="약속잡기"
-        component={Promises}
+        component={MakePromise}
         options={{
           headerTitleAlign: 'center',
           tabBarIcon: ({ color }) => <PromiseIcon color={color} />,

@@ -1,7 +1,14 @@
 import Input from '@/components/Input';
 import React, { useState } from 'react';
 import AppBar from '@/components/atoms/AppBar';
-import { Text, View, StyleSheet, TouchableOpacity,TextInputProps, ScrollView } from 'react-native';
+import {
+  Text,
+  View,
+  StyleSheet,
+  TouchableOpacity,
+  TextInputProps,
+  ScrollView,
+} from 'react-native';
 import Gps from '@/assets/icon/gps';
 import { Button } from '@/components/atoms/Button';
 import styled from 'styled-components/native';
@@ -39,13 +46,16 @@ const MakePromise = () => {
   const [address, setAddress] = useState<string>('');
   const [map, setMap] = useState<boolean>(false);
 
-  const getAddressFromCoordinates = async (latitude: number, longitude: number) => {
+  const getAddressFromCoordinates = async (
+    latitude: number,
+    longitude: number,
+  ) => {
     try {
-      const apiKey = "AIzaSyApOQfp96DxWeSrTpPiUm9G9UzfoezB93c";
+      const apiKey = 'AIzaSyApOQfp96DxWeSrTpPiUm9G9UzfoezB93c';
       const response = await fetch(
-        `https://maps.googleapis.com/maps/api/geocode/json?address=${latitude},${longitude}&key=${apiKey}&language=ko`
+        `https://maps.googleapis.com/maps/api/geocode/json?address=${latitude},${longitude}&key=${apiKey}&language=ko`,
       );
-  
+
       const data = await response.json();
       console.log(data);
 
@@ -71,125 +81,140 @@ const MakePromise = () => {
     getAddressFromCoordinates(latitude, longitude);
     console.log(address);
   };
+  const formatDate = (text) => {
+    // Remove non-numeric characters
+    const numericText = text.replace(/[^0-9]/g, '');
 
+    // Format the date as YYYY - MM - DD
+    if (numericText.length >= 8) {
+      const formattedDate = `${numericText.substring(
+        0,
+        4,
+      )} - ${numericText.substring(4, 6)} - ${numericText.substring(6, 8)}`;
+      setDate(formattedDate);
+    } else {
+      setDate(numericText);
+    }
+  };
 
   return (
     <ScrollView>
       {map === false ? (
         <View style={styles.container}>
-        <AppBar label="약속 잡기" onClick={() => {}} />
-        <View style={styles.wrapper}>
-          {/*1. 제목*/}
-          <Input
-            label="제목"
-            placeholder="약속 제목을 입력해주세요"
-            onChangeText={(text) => {
-              setTitle(text);
-            }}
-          />
-
-          {/*2. 약속 일정*/}
-          <Label>약속 일정</Label>
-          <StyledInputContainer>
-            <StyledInput
-              placeholder={"날짜 설정"}
-              onChangeText={(value: string) => setDate(value)}
-              value={date}
+          <View style={styles.wrapper}>
+            {/*1. 제목*/}
+            <Input
+              label="제목"
+              placeholder="약속 제목을 입력해주세요"
+              onChangeText={(text) => {
+                setTitle(text);
+              }}
             />
-            <Calendar />
-          </StyledInputContainer>
 
-          <StyledInputContainer>
-            <StyledInput
-              placeholder={"시간 설정"}
-              onChangeText={(value: string) => setTime(value)}
-              value={time}
-            />
-            <Clock />
-          </StyledInputContainer>
+            {/*2. 약속 일정*/}
+            <Label>약속 일정</Label>
+            <StyledInputContainer>
+              <StyledInput
+                placeholder={'YYYY - MM - DD'}
+                onChangeText={(value: string) => setDate(value)}
+                value={date}
+              />
+              <Calendar />
+            </StyledInputContainer>
 
-          {/*3. 약속 장소*/}
+            <StyledInputContainer>
+              <StyledInput
+                placeholder={'HH : MM'}
+                onChangeText={(value: string) => setTime(value)}
+                value={time}
+              />
+              <Clock />
+            </StyledInputContainer>
+
+            {/*3. 약속 장소*/}
             <Label>인증 방법</Label>
-            <LabelWrapper onPress={() => setMap(true)} >
-              {(lat === 37 && long === 126) ? (<Text>장소를 정해주세요</Text>) : (
+            <LabelWrapper onPress={() => setMap(true)}>
+              {lat === 37 && long === 126 ? (
+                <Text>장소를 정해주세요</Text>
+              ) : (
                 <Text style={{ color: '#0075FF' }}>장소를 입력하였습니다</Text>
               )}
               <Gps />
             </LabelWrapper>
 
-          {/*4. 인증 방법*/}
-          <View>
-            <Label>인증 방법</Label>
-            <View style={styles.flex}>
-              <Button
-                variant="small"
-                disabled={pass === 'leader'}
-                onClick={() => {
-                  setPass('leader');
-                }}
-              >
-                <Text style={styles.text}>위치 기반 자동 인증</Text>
-              </Button>
+            {/*4. 인증 방법*/}
+            <View>
+              <Label>인증 방법</Label>
+              <View style={styles.flex}>
+                <Button
+                  variant="small"
+                  disabled={pass === 'leader'}
+                  onClick={() => {
+                    setPass('leader');
+                  }}
+                >
+                  <Text style={styles.text}>위치 기반 자동 인증</Text>
+                </Button>
 
-              <Button
-                variant="small"
-                disabled={pass === 'location'}
-                onClick={() => {
-                  setPass('location');
-                }}
-              >
-                <Text style={styles.text}>방장 수동 인증</Text>
-              </Button>
+                <Button
+                  variant="small"
+                  disabled={pass === 'location'}
+                  onClick={() => {
+                    setPass('location');
+                  }}
+                >
+                  <Text style={styles.text}>방장 수동 인증</Text>
+                </Button>
+              </View>
+              <DesLabel>
+                1:1 약속방에서만 방장이 수동 인증을 했을 때 완료돼요!
+              </DesLabel>
             </View>
-            <DesLabel>
-              1:1 약속방에서만 방장이 수동 인증을 했을 때 완료돼요!
-            </DesLabel>
-          </View>
 
-          <View style={{ marginTop: 5 }}>
-            <Label>지각비 설정</Label>
-            <DesLabel>
-              방장들은 평균적으로 10,000원을 공통 지각비로 설정해요!
-            </DesLabel>
-            <View style={styles.flex}>
-              <Button
-                variant="small"
-                disabled={cost === 'either'}
-                onClick={() => {
-                  setCost('either');
-                }}
-              >
-                <Text style={styles.text}>공통 지각비 설정</Text>
-              </Button>
+            <View style={{ marginTop: 5 }}>
+              <Label>지각비 설정</Label>
+              <DesLabel>
+                방장들은 평균적으로 10,000원을 공통 지각비로 설정해요!
+              </DesLabel>
+              <View style={styles.flex}>
+                <Button
+                  variant="small"
+                  disabled={cost === 'either'}
+                  onClick={() => {
+                    setCost('either');
+                  }}
+                >
+                  <Text style={styles.text}>공통 지각비 설정</Text>
+                </Button>
 
-              <Button
-                variant="small"
-                disabled={cost === 'common'}
-                onClick={() => {
-                  setCost('common');
-                }}
-              >
-                <Text style={styles.text}>차등 지각비 설정</Text>
-              </Button>
+                <Button
+                  variant="small"
+                  disabled={cost === 'common'}
+                  onClick={() => {
+                    setCost('common');
+                  }}
+                >
+                  <Text style={styles.text}>차등 지각비 설정</Text>
+                </Button>
+              </View>
             </View>
-          </View>
-        {cost === "common" && (
-          <Input
-            placeholder="￦ 금액을 입력해주세요"
-            onChangeText={(text) => {
-              setCostNumber(text);
-            }}
-          />
-        )}
-        {cost === "either" && (
-          <View style={styles.flex}>
-          <Input
-            placeholder="￦ 최대 지각비를 입력해주세요"
-            onChangeText={(text) => {
-              setCostNumber(text);
-            }}
-          />
-          {/*<Picker
+            {cost === 'common' && (
+              <Input
+                placeholder="￦ 금액을 입력해주세요"
+                onChangeText={(text) => {
+                  setCostNumber(text);
+                }}
+              />
+            )}
+            {cost === 'either' && (
+              <View style={styles.flex}>
+                <Input
+                  placeholder="￦ 최대 지각비를 입력해주세요"
+                  onChangeText={(text) => {
+                    setCostNumber(text);
+                  }}
+                />
+                {/*<Picker
             selectedValue={perTime}
             onValueChange={(itemValue: string) => setPerTime(itemValue)}
           >
@@ -197,29 +222,35 @@ const MakePromise = () => {
             <Picker.Item label="10분마다" value="10분마다" />
             <Picker.Item label="20분마다" value="20분마다" />
           </Picker>*/}
-
-
+              </View>
+            )}
+            <Button
+              // disabled={
+              //   title.length === 0 ||
+              //   (lat === 37 && long === 126) ||
+              //   date.length === 0 ||
+              //   time.length === 0 ||
+              //   costNumber.length === 0
+              // }
+              onClick={() => {
+                //약속 생성하기!
+                console.log(title, date, time, cost, pass, costNumber);
+              }}
+            >
+              <Text>약속 등록하기</Text>
+            </Button>
           </View>
-        )}
-          <Button
-            disabled={
-              title.length === 0 || (lat === 37 && long === 126) || date.length === 0 || time.length === 0 || costNumber.length === 0
-            }
-            onClick={() => {
-              //약속 생성하기!
-              console.log(title, date, time, cost, pass, costNumber);
-            }}
-          >
-            <Text>약속 등록하기</Text>
-          </Button>
         </View>
-      </View>
-      ): (
+      ) : (
         <View style={styles.container}>
-          <AppBar label='약속 장소 설정' onClick={() => setMap(false)} />
+          <AppBar label="약속 장소 설정" onClick={() => setMap(false)} />
           {/*<GoogleMap />*/}
           <View style={styles.center}>
-            <Button onClick={() => {setMap(false)}}>
+            <Button
+              onClick={() => {
+                setMap(false);
+              }}
+            >
               <Text>위치 선정하기</Text>
             </Button>
           </View>
@@ -232,10 +263,9 @@ const MakePromise = () => {
               longitudeDelta: 0.0421,
             }}
             onPress={(e) => handleMapPress(e)}
-            />
+          />
         </View>
       )}
-      
     </ScrollView>
   );
 };
@@ -255,6 +285,7 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   container: {
+    paddingTop: 0,
     flex: 1,
     width: '100%',
     height: '100%',
@@ -333,6 +364,6 @@ const StyledInputContainer = styled.View`
 `;
 const StyledInput = styled.TextInput<StyledInputProps>`
   max-width: 80%;
-  color: #0075FF;
+  color: #0075ff;
 `;
 export default MakePromise;
