@@ -10,14 +10,12 @@ import PromiseIcon from '@/assets/icon/PromiseIcon';
 import PromiseHistoryIcon from '@/assets/icon/PromiseHistory';
 import MypageIcon from '@/assets/icon/MypageIcon';
 
-
 const Tab = createBottomTabNavigator();
 
 const TabNavigator = () => {
   return (
     <Tab.Navigator
       screenOptions={{
-        headerShown: false,
         tabBarStyle: {
           height: Platform.OS === 'android' ? 60 : 94,
           shadowColor: '#000000',
@@ -45,7 +43,7 @@ const TabNavigator = () => {
         name="홈"
         component={Home}
         options={{
-          headerTitleAlign: 'center',
+          headerShown: false,
           tabBarIcon: ({ color }) => <HomeIcon color={color} />,
         }}
       />
@@ -74,7 +72,6 @@ const TabNavigator = () => {
         }}
       />
     </Tab.Navigator>
-
   );
 };
 
