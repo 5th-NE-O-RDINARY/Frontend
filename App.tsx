@@ -65,7 +65,7 @@ export default function App() {
               }}
             />
             <Stack.Screen
-              name="Deposit"
+              name="PromiseDetail"
               component={PromiseDetail}
               options={{
                 title: '약속 내용',
