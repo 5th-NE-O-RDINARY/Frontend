@@ -10,6 +10,7 @@ import PromiseIcon from '@/assets/icon/PromiseIcon';
 import PromiseHistoryIcon from '@/assets/icon/PromiseHistory';
 import MypageIcon from '@/assets/icon/MypageIcon';
 
+
 const Tab = createBottomTabNavigator();
 
 const TabNavigator = () => {
@@ -73,6 +74,7 @@ const TabNavigator = () => {
         }}
       />
     </Tab.Navigator>
+
   );
 };
 
