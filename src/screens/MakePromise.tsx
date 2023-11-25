@@ -36,14 +36,39 @@ const MakePromise = () => {
   const [pass, setPass] = useState<'location' | 'leader'>('location');
   const [cost, setCost] = useState<'common' | 'either'>('common');
   const [costNumber, setCostNumber] = useState<string>('0');
-
+  const [address, setAddress] = useState<string>('');
   const [map, setMap] = useState<boolean>(false);
+
+  const getAddressFromCoordinates = async (latitude: number, longitude: number) => {
+    try {
+      const apiKey = "AIzaSyApOQfp96DxWeSrTpPiUm9G9UzfoezB93c";
+      const response = await fetch(
+        `https://maps.googleapis.com/maps/api/geocode/json?address=${latitude},${longitude}&key=${apiKey}&language=ko`
+      );
+  
+      const data = await response.json();
+      console.log(data);
+
+      if (data.results && data.results.length > 0) {
+        const formattedAddress = data.results[0].formatted_address;
+        setAddress(formattedAddress);
+        console.log(`Formatted Address: ${formattedAddress}`);
+      } else {
+        setAddress('Address not found');
+      }
+    } catch (error) {
+      console.error('Error fetching address:', error);
+      setAddress('Error fetching address');
+    }
+  };
 
   const handleMapPress = async (event: any) => {
     const { latitude, longitude } = event.nativeEvent.coordinate;
     console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
     setLat(latitude);
     setLong(longitude);
+    getAddressFromCoordinates(latitude, longitude);
+    console.log(address);
   };
 
 
@@ -86,7 +111,7 @@ const MakePromise = () => {
             <Label>인증 방법</Label>
             <LabelWrapper onPress={() => setMap(true)} >
               {(lat === 37 && long === 126) ? (<Text>장소를 정해주세요</Text>) : (
-                <Text>장소를 입력하였습니다</Text>
+                <Text style={{ color: '#0075FF' }}>장소를 입력하였습니다</Text>
               )}
               <Gps />
             </LabelWrapper>
@@ -307,5 +332,6 @@ const StyledInputContainer = styled.View`
 `;
 const StyledInput = styled.TextInput<StyledInputProps>`
   max-width: 80%;
+  color: #0075FF;
 `;
 export default MakePromise;
