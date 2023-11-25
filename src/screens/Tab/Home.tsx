@@ -1,11 +1,12 @@
 import Input from '@/components/Input';
 import React, { useState } from 'react';
-import { styled } from 'styled-components';
+import styled from 'styled-components/native';
 import { View, Text } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import { useNavigation } from '@react-navigation/native';
 
-const Home = () => {
+const Home = ({ navigation }) => {
   const [value, setValue] = useState<string>('');
-
   console.log('value:', value);
   return (
     <Container>
@@ -29,6 +30,10 @@ const Home = () => {
           setValue(text);
         }}
       />
+      {/* <TouchableOpacity onPress={() => navigation.navigate('MY')}> */}
+      <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
+        <Text>로그인하기</Text>
+      </TouchableOpacity>
     </Container>
   );
 };
