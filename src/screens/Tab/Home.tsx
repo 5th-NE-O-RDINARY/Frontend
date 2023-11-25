@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import styled from 'styled-components/native';
 import { View, Text } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { useNavigation } from '@react-navigation/native';
 
 const Home = ({ navigation }) => {
   const [value, setValue] = useState<string>('');
