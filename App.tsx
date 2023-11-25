@@ -1,5 +1,3 @@
-// App.tsx
-
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { RecoilRoot } from 'recoil';
 import { NavigationContainer } from '@react-navigation/native';
@@ -8,7 +6,6 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Test from '@/screens/Test';
 import TabNavigator from '@/screens/TabNavigator';
 import SignUp from '@/screens/SignUp';
-import Home from '@/screens/Tab/Home';
 import Login from '@/screens/Login';
 
 const Stack = createStackNavigator();
@@ -32,10 +29,10 @@ export default function App() {
                 fontSize: 20,
               },
             }}
-            initialRouteName={'Home'}
+            initialRouteName={'TabNavigator'}
           >
+            <Stack.Screen name="TabNavigator" component={TabNavigator} />
             <Stack.Screen name="Test" component={Test} />
-            {/* <Stack.Screen name="TabNavigator" component={TabNavigator} /> */}
             <Stack.Screen
               name="SignUp"
               component={SignUp}
@@ -43,7 +40,6 @@ export default function App() {
                 title: '회원 가입',
               }}
             />
-
             <Stack.Screen
               name="Login"
               component={Login}
@@ -51,7 +47,6 @@ export default function App() {
                 title: '로그인',
               }}
             />
-            <Stack.Screen name="Home" component={Home} />
           </Stack.Navigator>
         </NavigationContainer>
       </RecoilRoot>
