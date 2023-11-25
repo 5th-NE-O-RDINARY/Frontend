@@ -10,7 +10,6 @@ import OnBoarding from '@/screens/OnBoarding/OnBoarding';
 
 import SignUp from '@/screens/SignUp';
 import Login from '@/screens/Login';
-import MakePromise from '@/screens/MakePromise';
 
 const Stack = createStackNavigator();
 
@@ -35,7 +34,7 @@ export default function App() {
                 fontSize: 20,
               },
             }}
-            initialRouteName={'Home'}
+            initialRouteName={'OnBoarding'}
           >
             <Stack.Screen
               name="TabNavigator"
@@ -44,7 +43,6 @@ export default function App() {
                 headerShown: false,
               }}
             />
-            <Stack.Screen name="Test" component={Test} />
             <Stack.Screen name="OnBoarding" component={OnBoarding} />
             <Stack.Screen
               name="SignUp"
@@ -60,7 +58,6 @@ export default function App() {
                 title: '로그인',
               }}
             />
-            <Stack.Screen name="Home" component={MakePromise} />
           </Stack.Navigator>
         </NavigationContainer>
       </RecoilRoot>

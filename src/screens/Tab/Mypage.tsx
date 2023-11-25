@@ -92,7 +92,6 @@ const EditButton = styled.View`
 const EditText = styled.Text`
   font-size: 12px;
   font-weight: 400;
-  line-height: 18px;
   letter-spacing: -0.24px;
 `;
 
