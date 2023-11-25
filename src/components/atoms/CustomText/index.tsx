@@ -4,13 +4,11 @@ import { Text } from "react-native"
 import styled from "styled-components"
 
 /**
- * @param as Text 컴포넌트의 종류 : 'span' | 'p' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'div';
  * @param typo Typo theme 선택
  * @param color Palette theme 선택
  */
 
 export interface TextProps extends HTMLAttributes<HTMLSpanElement> {
-  as?: 'span' | 'p' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'div'
   typo: TextType['typo']
   color?: TextType['color']
   children: any
