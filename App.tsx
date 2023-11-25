@@ -1,13 +1,16 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { StyleSheet } from 'react-native';
+
 import { RecoilRoot } from 'recoil';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-
 import Test from '@/screens/Test';
 import TabNavigator from '@/screens/TabNavigator';
 import OnBoarding from '@/screens/OnBoarding/OnBoarding';
+
 import SignUp from '@/screens/SignUp';
 import Login from '@/screens/Login';
+import MakePromise from '@/screens/MakePromise';
 
 const Stack = createStackNavigator();
 
@@ -17,6 +20,8 @@ export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <RecoilRoot>
+        {/*<GoogleMap />*/}
+
         <NavigationContainer>
           <Stack.Navigator
             screenOptions={{
@@ -55,6 +60,7 @@ export default function App() {
                 title: '로그인',
               }}
             />
+            <Stack.Screen name="Home" component={MakePromise} />
           </Stack.Navigator>
         </NavigationContainer>
       </RecoilRoot>
