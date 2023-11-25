@@ -4,7 +4,9 @@ import { StyleSheet, Text, View } from 'react-native';
 import { RecoilRoot } from 'recoil';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import Home from '@/screens/Home';
+
+import Test from '@/screens/Test';
+import TabNavigator from '@/screens/TabNavigator';
 
 const Stack = createStackNavigator();
 
@@ -16,11 +18,11 @@ export default function App() {
       <RecoilRoot>
         <NavigationContainer>
           <Stack.Navigator
-            screenOptions={{
-              headerShown: false,
-            }}
+            screenOptions={({ route }) => ({ headerShown: false })}
+            initialRouteName={'TabNavigator'}
           >
-            <Stack.Screen name="Home" component={Home} />
+            <Stack.Screen name="Test" component={Test} />
+            <Stack.Screen name="TabNavigator" component={TabNavigator} />
           </Stack.Navigator>
         </NavigationContainer>
       </RecoilRoot>
