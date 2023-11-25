@@ -7,6 +7,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import Test from '@/screens/Test';
 import TabNavigator from '@/screens/TabNavigator';
+import OnBoarding from '@/screens/OnBoarding/OnBoarding';
 import SignUp from '@/screens/SignUp';
 import Home from '@/screens/Tab/Home';
 import Login from '@/screens/Login';
@@ -35,7 +36,8 @@ export default function App() {
             initialRouteName={'Home'}
           >
             <Stack.Screen name="Test" component={Test} />
-            {/* <Stack.Screen name="TabNavigator" component={TabNavigator} /> */}
+            <Stack.Screen name="TabNavigator" component={TabNavigator} />
+            <Stack.Screen name="OnBoarding" component={OnBoarding} />
             <Stack.Screen
               name="SignUp"
               component={SignUp}

@@ -1,5 +1,5 @@
-import { palette } from "./palette";
-import { typo } from "./typo";
+import { palette } from './palette';
+import { typo } from './typo';
 
 export const theme = {
   palette,
@@ -15,6 +15,6 @@ export type TypeOfTypo = typeof typo;
 export type KeyOfTypo = keyof typeof typo;
 
 export type TextType = {
-  typo: KeyOfTypo
-  color: KeyOfPalette
+  typo: KeyOfTypo;
+  color: KeyOfPalette;
 };
