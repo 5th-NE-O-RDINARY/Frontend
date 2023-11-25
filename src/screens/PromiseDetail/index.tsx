@@ -30,4 +30,5 @@ export default PromiseDetail
 
 const PromiseDetailWrapper = styled(ScrollView)`
     padding: 0 32px;
+    background-color: #fff;
 `

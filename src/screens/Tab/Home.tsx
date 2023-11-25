@@ -8,7 +8,7 @@ import LogoIcon from '@/assets/icon/Logo';
 import { Button } from '@/components/atoms/Button';
 import ImageBox from '@/components/Home/ImageBox';
 
-const Home = () => {
+const Home = ({ navigation }) => {
   return (
     <Container>
       <Logo>
@@ -31,7 +31,9 @@ const Home = () => {
         <SmallText>친구, 지인과 약속을 잡고</SmallText>
         <SmallText>약속한 시간에 만나 더 많은 시간을 보내 보세요.</SmallText>
         <View style={{ height: 24 }} />
-        <Button>1분만에 약속 잡기</Button>
+        <Button onClick={() => navigation.navigate('약속잡기')}>
+          1분만에 약속 잡기
+        </Button>
       </Expected>
       <Famous>
         <FamousTitle>인기 약속 장소 Best 10</FamousTitle>
