@@ -2606,6 +2606,51 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@tanstack/query-core@npm:5.8.7":
+  version: 5.8.7
+  resolution: "@tanstack/query-core@npm:5.8.7"
+  checksum: ed6c0966ab7593d6dd36e6663ca5d7f73049fb0df0f3f1a3a78539f06e7ab583a5b4104c454025e90fa4bd447d87b74518d03166e88ac4cfa6fca850a01cbf4f
+  languageName: node
+  linkType: hard
+
+"@tanstack/query-devtools@npm:5.8.4":
+  version: 5.8.4
+  resolution: "@tanstack/query-devtools@npm:5.8.4"
+  checksum: 9f28304a593f67caa2d72a16feb4a92c9095f7fb392765e7a6173b948449d707a4305b6c8c1ce27abad7e0d2e280b3991ddd4277d8d16e9a9cac12cd794aff8f
+  languageName: node
+  linkType: hard
+
+"@tanstack/react-query-devtools@npm:^5.8.7":
+  version: 5.8.7
+  resolution: "@tanstack/react-query-devtools@npm:5.8.7"
+  dependencies:
+    "@tanstack/query-devtools": 5.8.4
+  peerDependencies:
+    "@tanstack/react-query": ^5.8.7
+    react: ^18.0.0
+    react-dom: ^18.0.0
+  checksum: 710691ee7df1df9c21b677fe8fc3d519b7c8c07f5aaae40ada31730db13406d6fede78f9938f50e11492ce0dba5e32df4eda1c4b5970d916efc14cf80f9446f0
+  languageName: node
+  linkType: hard
+
+"@tanstack/react-query@npm:^5.8.7":
+  version: 5.8.7
+  resolution: "@tanstack/react-query@npm:5.8.7"
+  dependencies:
+    "@tanstack/query-core": 5.8.7
+  peerDependencies:
+    react: ^18.0.0
+    react-dom: ^18.0.0
+    react-native: "*"
+  peerDependenciesMeta:
+    react-dom:
+      optional: true
+    react-native:
+      optional: true
+  checksum: 033e50d4a521117a6268fed944adfc107010a58d0533551f85e6e4daf7cbcd6acd49da55ea7003bd8c86a4af0e9a11adcd327e562807b9fb3db664395a0bb2e6
+  languageName: node
+  linkType: hard
+
 "@types/istanbul-lib-coverage@npm:*, @types/istanbul-lib-coverage@npm:^2.0.0":
   version: 2.0.6
   resolution: "@types/istanbul-lib-coverage@npm:2.0.6"
@@ -6703,6 +6748,8 @@ __metadata:
   resolution: "money@workspace:."
   dependencies:
     "@babel/core": ^7.20.0
+    "@tanstack/react-query": ^5.8.7
+    "@tanstack/react-query-devtools": ^5.8.7
     "@types/react": ^18.2.38
     "@types/react-native": ^0.72.7
     expo: ^49.0.21
