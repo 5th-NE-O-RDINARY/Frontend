@@ -1,6 +1,6 @@
+// App.tsx
+
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
 import { RecoilRoot } from 'recoil';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -8,6 +8,9 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Test from '@/screens/Test';
 import TabNavigator from '@/screens/TabNavigator';
 import OnBoarding from '@/screens/OnBoarding/OnBoarding';
+import SignUp from '@/screens/SignUp';
+import Home from '@/screens/Tab/Home';
+import Login from '@/screens/Login';
 
 const Stack = createStackNavigator();
 
@@ -19,24 +22,41 @@ export default function App() {
       <RecoilRoot>
         <NavigationContainer>
           <Stack.Navigator
-            screenOptions={({ route }) => ({ headerShown: false })}
-            initialRouteName={'TabNavigator'}
+            screenOptions={{
+              headerStyle: {
+                height: 60,
+                backgroundColor: '#fff',
+              },
+              headerTintColor: '#000',
+              headerTitleStyle: {
+                fontWeight: '600',
+                fontSize: 20,
+              },
+            }}
+            initialRouteName={'Home'}
           >
             <Stack.Screen name="Test" component={Test} />
             <Stack.Screen name="TabNavigator" component={TabNavigator} />
             <Stack.Screen name="OnBoarding" component={OnBoarding} />
+            <Stack.Screen
+              name="SignUp"
+              component={SignUp}
+              options={{
+                title: '회원 가입',
+              }}
+            />
+
+            <Stack.Screen
+              name="Login"
+              component={Login}
+              options={{
+                title: '로그인',
+              }}
+            />
+            <Stack.Screen name="Home" component={Home} />
           </Stack.Navigator>
         </NavigationContainer>
       </RecoilRoot>
     </QueryClientProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

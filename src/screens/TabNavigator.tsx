@@ -13,9 +13,9 @@ const TabNavigator = () => {
         screenOptions={({ route }) => ({ headerShown: false })}
         initialRouteName="Home"
       >
-        <Tab.Screen name="Home" component={Home} />
-        <Tab.Screen name="TabTest" component={TabTest} />
-        <Tab.Screen name="OnBoarding" component={OnBoarding} />
+        <Tab.Screen name="홈" component={Home} />
+        <Tab.Screen name="약속잡기" component={TabTest} />
+        <Tab.Screen name="MY" component={TabTest} />
       </Tab.Navigator>
     </NavigationContainer>
   );
