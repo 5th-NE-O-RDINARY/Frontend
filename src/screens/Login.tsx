@@ -50,7 +50,12 @@ const Login = ({ navigation }) => {
       </Active>
 
       <ButtonBox>
-        <Button disabled={disabled} onClick={handleLogin}>
+        <Button
+          disabled={disabled}
+          onClick={() => {
+            navigation.navigate('TabNavigator');
+          }}
+        >
           로그인
         </Button>
       </ButtonBox>

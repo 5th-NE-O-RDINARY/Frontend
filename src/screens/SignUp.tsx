@@ -75,7 +75,9 @@ const SignUp = ({ navigation }) => {
         <DuplicateCheck>비밀번호가 일치하지 않습니다</DuplicateCheck>
       )}
       <ButtonBox>
-        <Button onClick={handleSignup}>회원가입하기</Button>
+        <Button onClick={() => navigation.navigate('Login')}>
+          회원가입하기
+        </Button>
       </ButtonBox>
 
       <Bottom>
