@@ -44,7 +44,13 @@ export default function App() {
               }}
             />
 
-            <Stack.Screen name="Login" component={Login} />
+            <Stack.Screen
+              name="Login"
+              component={Login}
+              options={{
+                title: '로그인',
+              }}
+            />
             <Stack.Screen name="Home" component={Home} />
           </Stack.Navigator>
         </NavigationContainer>
