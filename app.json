@@ -19,6 +19,10 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
+      },
+      "package": "com.anonymous.money",
+      "config": {
+        "googleMaps": { "apiKey": "AIzaSyApOQfp96DxWeSrTpPiUm9G9UzfoezB93c" }
       }
     },
     "web": {
@@ -27,6 +31,11 @@
     "packagerOpts": {
       "sourceExts": ["ts", "tsx", "js"],
       "transformer": "node_modules/react-native-typescript-transformer/index.js"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "282f3b88-946a-4081-96ce-12c3da169cae"
+      }
     }
   }
 }
