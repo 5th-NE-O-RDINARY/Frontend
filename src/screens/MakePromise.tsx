@@ -26,10 +26,10 @@ interface StyledInputProps extends TextInputProps {
   onClick?: () => void;
 }
 
-const MakePromise = () => {
+const MakePromise = ({ navigation }) => {
   const [title, setTitle] = useState<string>('');
 
-  const [lat, setLat] = useState<any>(37);
+  const [lat, setLat] = useState<number>(37);
   const [long, setLong] = useState<number>(126);
 
   const [date, setDate] = useState<string>('');
@@ -39,10 +39,10 @@ const MakePromise = () => {
   const [time, setTime] = useState<string>('');
 
   const [location, setLocation] = useState<any>('');
-
+  const [perTimeVisible, setPerTimeVisible] = useState<boolean>(false);
   const [pass, setPass] = useState<'location' | 'leader'>('location');
   const [cost, setCost] = useState<'common' | 'either'>('common');
-  const [costNumber, setCostNumber] = useState<string>('0');
+  const [costNumber, setCostNumber] = useState<number>(0);
   const [address, setAddress] = useState<string>('');
   const [map, setMap] = useState<boolean>(false);
 
@@ -77,6 +77,7 @@ const MakePromise = () => {
     console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
     setLat(latitude);
     setLong(longitude);
+    setMap(false);
 
     getAddressFromCoordinates(latitude, longitude);
     console.log(address);
@@ -202,26 +203,82 @@ const MakePromise = () => {
               <Input
                 placeholder="￦ 금액을 입력해주세요"
                 onChangeText={(text) => {
-                  setCostNumber(text);
+                  setCostNumber(Number(text));
                 }}
               />
             )}
             {cost === 'either' && (
-              <View style={styles.flex}>
-                <Input
+              //    <View style={styles.flex}>
+              //      <Input
+              //        placeholder="￦ 최대 지각비를 입력해주세요"
+              //        onChangeText={(text) => {
+              //          setCostNumber(text);
+              //        }}
+              //      />
+              //      {/*<Picker
+              //  selectedValue={perTime}
+              //  onValueChange={(itemValue: string) => setPerTime(itemValue)}
+              //>
+              //  <Picker.Item label="5분마다" value="5분마다" />
+              //  <Picker.Item label="10분마다" value="10분마다" />
+              //  <Picker.Item label="20분마다" value="20분마다" />
+              //</Picker>*/}
+              //    </View>
+              <View style={styles.flexWrapper}>
+                <StyledTextField
                   placeholder="￦ 최대 지각비를 입력해주세요"
-                  onChangeText={(text) => {
-                    setCostNumber(text);
+                  onChangeText={(value: string) => {
+                    setCostNumber(Number(value));
                   }}
                 />
-                {/*<Picker
-            selectedValue={perTime}
-            onValueChange={(itemValue: string) => setPerTime(itemValue)}
-          >
-            <Picker.Item label="5분마다" value="5분마다" />
-            <Picker.Item label="10분마다" value="10분마다" />
-            <Picker.Item label="20분마다" value="20분마다" />
-          </Picker>*/}
+                <StyledLabelWrapper
+                  onPress={() => {
+                    setPerTimeVisible(true);
+                  }}
+                >
+                  <Text>{perTime}</Text>
+                </StyledLabelWrapper>
+                {perTimeVisible && (
+                  <AlertModalWrapper>
+                    <StyledButton
+                      onPress={() => {
+                        setPerTimeVisible(false);
+                      }}
+                    >
+                      <Text>X</Text>
+                    </StyledButton>
+                    <StyledModalText>주기 설정</StyledModalText>
+                    <View style={styles.center}>
+                      <Button
+                        variant="short"
+                        color={perTime !== '5분마다' ? '#F1F1F1' : '#0075FF'}
+                        onClick={() => {
+                          setPerTime('5분마다');
+                        }}
+                      >
+                        <StyleText>5분마다</StyleText>
+                      </Button>
+                      <Button
+                        variant="short"
+                        color={perTime !== '10분마다' ? '#F1F1F1' : '#0075FF'}
+                        onClick={() => {
+                          setPerTime('10분마다');
+                        }}
+                      >
+                        <StyleText>10분마다</StyleText>
+                      </Button>
+                      <Button
+                        variant="short"
+                        color={perTime !== '15분마다' ? '#F1F1F1' : '#0075FF'}
+                        onClick={() => {
+                          setPerTime('15분마다');
+                        }}
+                      >
+                        <StyleText>15분마다</StyleText>
+                      </Button>
+                    </View>
+                  </AlertModalWrapper>
+                )}
               </View>
             )}
             <Button
@@ -234,7 +291,8 @@ const MakePromise = () => {
               // }
               onClick={() => {
                 //약속 생성하기!
-                console.log(title, date, time, cost, pass, costNumber);
+                //console.log(title, date, time, cost, pass, costNumber);
+                navigation.navigator('PromiseDetail');
               }}
             >
               <Text>약속 등록하기</Text>
@@ -277,6 +335,13 @@ const styles = StyleSheet.create({
     alignContent: 'center',
     width: '100%',
   },
+  flexWrapper: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginRight: 7,
+  },
   flex: {
     display: 'flex',
     flexDirection: 'row',
@@ -309,7 +374,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 });
-
+const StyleText = styled.Text`
+  font-size: 12px;
+`;
 const Label = styled.Text`
   font-size: 16px;
   font-weight: 400;
@@ -342,7 +409,6 @@ const LabelWrapper = styled.TouchableOpacity`
 
 const DesLabel = styled.Text`
   font-size: 10px;
-  font-style: normal;
   font-weight: 400;
   letter-spacing: -0.2px;
   color: #5c5b7c;
@@ -365,5 +431,72 @@ const StyledInputContainer = styled.View`
 const StyledInput = styled.TextInput<StyledInputProps>`
   max-width: 80%;
   color: #0075ff;
+`;
+
+const StyledLabelWrapper = styled.TouchableOpacity`
+  height: 50px;
+  font-size: 12px;
+  text-align: center;
+  background-color: #f1f1f1;
+  border-radius: 15px;
+  margin-top: 28px;
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+`;
+
+const StyledTextField = styled.TextInput<StyledInputProps>`
+  width: 194px;
+  background-color: #f1f1f1;
+  border-radius: 15px;
+  height: 50px;
+  font-size: 12px;
+  font-weight: 400;
+  margin-top: 30px;
+  padding-left: 14px;
+`;
+const AlertModalWrapper = styled(View)`
+  position: absolute;
+  width: 251px;
+  height: 188px;
+  background-color: #ffffff;
+  border-radius: 15px;
+  left: 15%;
+  bottom: 45%;
+`;
+
+const StyledButton = styled(TouchableOpacity)`
+  margin-top: 10px;
+  margin-left: 90%;
+  margin-bottom: 10px;
+`;
+
+const StyledText = styled(Text)`
+  color: #0075ff;
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: -0.2px;
+`;
+
+const StyledDescription = styled(Text)`
+  color: #000;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: -0.32px;
+`;
+
+const Flex = styled(View)`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 21px;
+`;
+const StyledModalText = styled(Text)`
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: -0.32px;
+  margin-left: 10px;
+  margin-bottom: 40px;
 `;
 export default MakePromise;
