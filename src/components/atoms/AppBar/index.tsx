@@ -1,5 +1,7 @@
-import ArrowDirection from '@/assets/arrowDirection';
+import ArrowDirection from '@/assets/icon/arrowDirection';
+import { useNavigation } from '@react-navigation/native';
 import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
+
 
 interface AppBarProps {
   label: string;
@@ -7,6 +9,8 @@ interface AppBarProps {
 }
 
 const AppBar = ({ label, onClick }: AppBarProps) => {
+  const navigation = useNavigation
+  
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={onClick} style={styles.icon}>
@@ -34,6 +38,7 @@ const styles = StyleSheet.create({
     flex: 1,
     textAlign: 'center',
     fontSize: 20,
+    marginRight: 32,
   },
 });
 export default AppBar;

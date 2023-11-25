@@ -11,7 +11,7 @@ const TabTest = () => {
   };
   return (
     <View style={styles.wrapper}>
-      <SafeAreaView>
+      {/*<SafeAreaView>
         <AppBar label="약속잡기" />
       </SafeAreaView>
       <View style={styles.container}>
@@ -73,7 +73,7 @@ const TabTest = () => {
         </View>
 
         <Button title="약속 등록하기" />
-      </View>
+      </View>*/}
     </View>
   );
 };
