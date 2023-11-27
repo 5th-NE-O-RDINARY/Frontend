@@ -1,5 +1,6 @@
 import XIcon from '@/assets/icon/XButton';
 import { promiseDetailState } from '@/libs/store/promiseDetail';
+import { useState } from 'react';
 import { View, Text } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { useSetRecoilState } from 'recoil';
@@ -8,7 +9,7 @@ import { Button } from '../Button';
 
 const AlertModal = () => {
   const setModal = useSetRecoilState(promiseDetailState);
-
+  const [copy, setCopy] = useState<boolean>(false);
   return (
     <AlertModalWrapper>
       <StyledButton
@@ -21,7 +22,15 @@ const AlertModal = () => {
       <Flex>
         <StyledText>초대할 사람에게 공유해주세요!</StyledText>
         <StyledDescription>초대코드 창</StyledDescription>
-        <Button variant="short">복사</Button>
+        <Button
+          variant="short"
+          onClick={() => {
+            setCopy(!copy);
+          }}
+        >
+          복사
+        </Button>
+        {copy && <StyledText>복사되었습니다!!</StyledText>}
       </Flex>
     </AlertModalWrapper>
   );
@@ -35,7 +44,7 @@ const AlertModalWrapper = styled(View)`
   height: 188px;
   background-color: #ffffff;
   border-radius: 15px;
-  left: 15%;
+  left: 8%;
   bottom: 45%;
 `;
 

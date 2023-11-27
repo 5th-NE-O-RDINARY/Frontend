@@ -1,35 +1,51 @@
-import { View, Text } from "react-native"
-import { styled } from "styled-components"
-import { Button } from "../atoms/Button"
-import Avatar from "../atoms/Avatar"
-import { useSetRecoilState } from "recoil"
-import { promiseDetailState } from "@/libs/store/promiseDetail"
+import { View, Text } from 'react-native';
+import { styled } from 'styled-components';
+import { Button } from '../atoms/Button';
+import Avatar from '../atoms/Avatar';
+import { useSetRecoilState } from 'recoil';
+import { promiseDetailState } from '@/libs/store/promiseDetail';
+import { useState } from 'react';
 
-type VariantType = 'default' | 'button'
+type VariantType = 'default' | 'button';
 
-const PromiseParticipant = ({ participantCount, variant = 'default' }: { participantCount: number, variant: VariantType }) => {
-    const setModal = useSetRecoilState(promiseDetailState)
+const PromiseParticipant = ({
+  participantCount,
+  variant = 'default',
+}: {
+  participantCount: number;
+  variant: VariantType;
+}) => {
+  const setModal = useSetRecoilState(promiseDetailState);
+  const [copy, setCopy] = useState<boolean>(false);
+  return (
+    <StyledView>
+      <StyledTitle>참여자</StyledTitle>
+      <Flex>
+        <ProfileWrapper>
+          <Avatar variant={'default'} name={'홍길동'} />
+        </ProfileWrapper>
+        <Button
+          variant="small"
+          onClick={() =>
+            setModal((prevData) => ({ ...prevData, isOpen: true }))
+          }
+        >
+          초대코드 공유하기
+        </Button>
+      </Flex>
+      {variant === 'default' && (
+        <StyledDescription>홍길동 님 외 0명</StyledDescription>
+      )}
+    </StyledView>
+  );
+};
 
-    return (
-        <StyledView>
-            <StyledTitle>참여자</StyledTitle>
-            <Flex>
-                <ProfileWrapper>
-                    <Avatar variant={'default'} name={'홍길동'} />
-                </ProfileWrapper>
-                <Button variant='small' onClick={() => setModal((prevData) => ({...prevData, isOpen: true}))}>초대코드 공유하기</Button>
-            </Flex>
-            {variant === 'default' && <StyledDescription>홍길동 님 외 {participantCount}명</StyledDescription>}
-        </StyledView>
-    )
-}
-
-export default PromiseParticipant
+export default PromiseParticipant;
 
 const StyledView = styled(View)`
-    height: fit-content;
-    margin-bottom: 30px;
-`
+  height: fit-content;
+  margin-bottom: 30px;
+`;
 
 const StyledTitle = styled(Text)`
   margin-bottom: 8px;
@@ -37,21 +53,29 @@ const StyledTitle = styled(Text)`
   font-size: 20px;
   font-weight: 600;
   letter-spacing: -0.4px;
-`
+`;
 
 const ProfileWrapper = styled(View)`
-    width: 120px;
-    height: fit-content;
-`
+  width: 120px;
+  height: fit-content;
+`;
 
 const Flex = styled(View)`
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin-bottom: 4px;
-`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 4px;
+`;
 const StyledDescription = styled(Text)`
   font-size: 10px;
   font-weight: 400;
   letter-spacing: -0.2px;
-`
+`;
+
+const copyModal = () => {
+  return (
+    <View>
+      <Text>복사</Text>
+    </View>
+  );
+};

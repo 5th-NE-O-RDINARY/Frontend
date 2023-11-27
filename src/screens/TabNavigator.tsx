@@ -32,7 +32,6 @@ const TabNavigator = () => {
         tabBarLabelStyle: {
           fontSize: 12,
           fontWeight: '600',
-          lineHeight: 18,
           letterSpacing: -0.24,
           marginBottom: 14,
           marginTop: -20,

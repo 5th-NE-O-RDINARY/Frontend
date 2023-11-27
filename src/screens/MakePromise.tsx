@@ -262,7 +262,7 @@ const MakePromise = ({ navigation }) => {
                     <View style={styles.center}>
                       <Button
                         variant="short"
-                        color={perTime !== '5분마다' ? '#F1F1F1' : '#0075FF'}
+                        color={perTime !== '5분마다' ? '#cacaca' : '#0075FF'}
                         onClick={() => {
                           setPerTime('5분마다');
                         }}
@@ -271,7 +271,7 @@ const MakePromise = ({ navigation }) => {
                       </Button>
                       <Button
                         variant="short"
-                        color={perTime !== '10분마다' ? '#F1F1F1' : '#0075FF'}
+                        color={perTime !== '10분마다' ? '#cacaca' : '#0075FF'}
                         onClick={() => {
                           setPerTime('10분마다');
                         }}
@@ -280,7 +280,7 @@ const MakePromise = ({ navigation }) => {
                       </Button>
                       <Button
                         variant="short"
-                        color={perTime !== '15분마다' ? '#F1F1F1' : '#0075FF'}
+                        color={perTime !== '15분마다' ? '#cacaca' : '#0075FF'}
                         onClick={() => {
                           setPerTime('15분마다');
                         }}
@@ -473,7 +473,7 @@ const AlertModalWrapper = styled(View)`
   height: 188px;
   background-color: #ffffff;
   border-radius: 15px;
-  left: 15%;
+  left: 8%;
   bottom: 45%;
 `;
 

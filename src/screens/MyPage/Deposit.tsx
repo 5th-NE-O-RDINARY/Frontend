@@ -1,5 +1,5 @@
-// import DepositButton from '@/components/MyPage/DepositButton';
-import { useState } from 'react';
+import DepositButton from '@/components/Mypage/DepositButton';
+import React, { useState } from 'react';
 import { Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import styled from 'styled-components';
@@ -24,8 +24,9 @@ const Deposit = () => {
       </Flex>
       <AmountText>충전할 금액</AmountText>
       <DepositButtonWrapper>
-        {/* {buttonData.map((button) => (
+        {buttonData.map((button) => (
           <DepositButton
+            key={button.id}
             variant={button.id === selectedButton ? 'default' : 'disabled'}
             onClick={() => {
               console.log(button.id);
@@ -34,7 +35,7 @@ const Deposit = () => {
           >
             {button.text}
           </DepositButton>
-        ))} */}
+        ))}
       </DepositButtonWrapper>
       <AmountText>결제 방법</AmountText>
       <VirtualAccountWrapper>

@@ -1,8 +1,8 @@
 import Button from '@/components/Mypage/Button';
 import TermsItem from '@/components/Mypage/TermsItem';
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image, TouchableOpacity } from 'react-native';
 import styled from 'styled-components/native';
-const Mypage = () => {
+const Mypage = ({ navigation }) => {
   return (
     <View>
       <Top>
@@ -22,7 +22,13 @@ const Mypage = () => {
           </EditButton>
         </Profile>
         <Buttons>
-          <Button title="누적 적립금" point="💵 320원" />
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate('Deposit');
+            }}
+          >
+            <Button title="누적 적립금" point="💵 320원" />
+          </TouchableOpacity>
           <Button title="포인트" point="😀 520 P" />
         </Buttons>
       </Top>
